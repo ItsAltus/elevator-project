@@ -61,15 +61,16 @@ Elevator-Project/
 
 ### How to Run
 Install the dependencies in requirements.txt (only pytest for running the tests)
+
 To run the elevator, either run:
 - python src/main.py --start [floor you want to start from] --floors [list of integers of consecutive floors to visit]
 or
 - ./src/main.py --start [floor you want to start from] --floors [list of integers of consecutive floors to visit]
 
 To run the tests, either run:
-pytest
+- pytest
 or
-python -m pytest
+- python -m pytest
 
 ## Assumptions
 
@@ -79,4 +80,5 @@ python -m pytest
 4. The output should be a string, as the instructions had the example output as "560 12,2,9,1,32", and outputting the tuple itself would make it appear as "(560, [12,2,9,1,32])".
 5. Negative floors should be allowed (basements), as the instructions had no restrictions against them.
 ---
+
 
