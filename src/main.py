@@ -1,20 +1,43 @@
 import argparse
 from elevator.simulator import Elevator
 
+def parse_floors(floors_str: str) -> list[int]:
+    parts = [floor.strip() for floor in floors_str.split(",")]
+
+    if not parts or any(part == "" for part in parts):
+        raise ValueError("Floors must be a non-empty comma-separated list of integers.")
+
+    try: 
+        floors = [int(part) for part in parts]
+    except ValueError:
+        raise ValueError("Floors must be a non-empty comma-separated list of integers.")
+
+    return floors
+
 def main():
     """
     Main function to run the elevator simulation.
     """
     parser = argparse.ArgumentParser(description="Elevator Simulation")
-    parser.add_argument("--start", type=int, required=True)
-    parser.add_argument("--floors", type=str, required=True)
+    parser.add_argument(
+        "--start",
+        type=int,
+        required=True,
+        help="Starting floor of the elevator, must be a single integer value (e.g. 1 or \"1\")"
+    )
+    parser.add_argument(
+        "--floors",
+        type=str,
+        required=True,
+        help="Comma-separated list of floors to visit (e.g. 1,2,3 or \"1, 2, 3\")"
+    )
     args = parser.parse_args()
 
     try:
-        floors = [int(floor) for floor in args.floors.replace(" ", "").split(",")]
-    except ValueError:
-        raise ValueError("Floors must be a comma-separated list of integers.")
-    
+        floors = parse_floors(args.floors)
+    except ValueError as error:
+        parser.error(str(error))
+
     elevator = Elevator(start_floor=args.start)
     total_time, visited_floors = elevator.run(floors)
     floors_str = ",".join(map(str, visited_floors))
