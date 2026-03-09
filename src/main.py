@@ -2,6 +2,18 @@ import argparse
 from elevator.simulator import Elevator
 
 def parse_floors(floors_str: str) -> list[int]:
+    """
+    Parse and validate a comma-separated list of floor numbers.
+
+    Args:
+        floors_str: The input from the --floors argument.
+
+    Returns:
+        A list of integers representing floors to visit.
+
+    Raises:
+        ValueError: If the input is empty or contains invalid entries.
+    """
     parts = [floor.strip() for floor in floors_str.split(",")]
 
     if not parts or any(part == "" for part in parts):
@@ -14,7 +26,7 @@ def parse_floors(floors_str: str) -> list[int]:
 
     return floors
 
-def main():
+def main() -> None:
     """
     Main function to run the elevator simulation.
     """

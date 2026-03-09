@@ -13,7 +13,7 @@ class Elevator:
         Simulate the elevator visiting the stops in order.
 
         Args:
-            stops: A list of floor numbers that the elevator will visit in the given order.
+            stops_list: A list of floor numbers that the elevator will visit in the given order.
         Returns:
             A tuple containing the total time taken to visit all stops and a list of the floors visited in order.
         """
