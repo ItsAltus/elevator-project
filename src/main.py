@@ -16,7 +16,9 @@ def main():
         raise ValueError("Floors must be a comma-separated list of integers.")
     
     elevator = Elevator(start_floor=args.start)
-    print(elevator.run(stops_list=floors))
+    total_time, visited_floors = elevator.run(floors)
+    floors_str = ",".join(map(str, visited_floors))
+    print(f"{total_time} {floors_str}")
 
 if __name__ == "__main__":
     main()
